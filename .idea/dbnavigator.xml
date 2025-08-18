@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DBNavigator.Project.DDLFileAttachmentManager">
+    <mappings />
+    <preferences />
+  </component>
+  <component name="DBNavigator.Project.DataEditorManager">
+    <record-view-column-sorting-type value="BY_INDEX" />
+    <value-preview-text-wrapping value="true" />
+    <value-preview-pinned value="false" />
+  </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
@@ -8,11 +17,28 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="66c4b82a-258c-4972-94ce-d3069926f383">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+      <console name="Connection" type="STANDARD" schema="u201212290_qaloantec" session="Main"><![CDATA[use u201212290_qaloantec;
+
+SELECT * FROM deposits WHERE amount >= 10 AND amount <= 500;]]></console>
     </connection>
   </component>
+  <component name="DBNavigator.Project.DatabaseEditorStateManager">
+    <last-used-providers />
+  </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="66c4b82a-258c-4972-94ce-d3069926f383" object-ref="consoles/Connection" />
+      <object connection-id="66c4b82a-258c-4972-94ce-d3069926f383" object-ref="schemas/u201212290_qaloantec/tables/deposits" />
+    </open-files>
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="66c4b82a-258c-4972-94ce-d3069926f383" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="66c4b82a-258c-4972-94ce-d3069926f383" dataset="u201212290_qaloantec.deposits" active-filter-id="EMPTY_FILTER" />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -509,5 +535,9 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+    <execution-variable-types />
   </component>
 </project>

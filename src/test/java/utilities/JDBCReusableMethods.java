@@ -75,7 +75,6 @@ public class JDBCReusableMethods {
 
     public static ResultSet executeMyQuery(String Query){
 
-        createMyConnection();
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
