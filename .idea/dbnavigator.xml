@@ -19,7 +19,7 @@
     <connection id="66c4b82a-258c-4972-94ce-d3069926f383">
       <console name="Connection" type="STANDARD" schema="u201212290_qaloantec" session="Main"><![CDATA[use u201212290_qaloantec;
 
-SELECT * FROM deposits WHERE amount >= 10 AND amount <= 500;]]></console>
+SELECT * FROM deposits WHERE amount >= 200 AND amount <= 499;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

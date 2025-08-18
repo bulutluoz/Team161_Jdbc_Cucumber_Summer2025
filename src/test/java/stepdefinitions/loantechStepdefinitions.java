@@ -15,10 +15,11 @@ public class loantechStepdefinitions {
     public void kullanici_loantech_database_ine_baglanir() {
         JDBCReusableMethods.createMyConnection();
     }
+
     @When("deposits tablosunda amount degeri {int} ile {int} arasinda olan kayitlari sorgular")
-    public void deposits_tablosunda_amount_degeri_ile_arasinda_olan_kayitlari_sorgular(Integer int1, Integer int2) {
+    public void deposits_tablosunda_amount_degeri_ile_arasinda_olan_kayitlari_sorgular(Integer minDeger, Integer maxDeger) {
         // 3.adim query hazirlama
-        String query = LoantechQueries.depositsTablosundan100Ve500arasindakiKayitlariGetirme;
+        String query = LoantechQueries.depositsTablosundaBelirliAraliktakiKayitlar(minDeger,maxDeger);
         //4. Adim: SQL sorgusunu çalıştırma ve sonuç setini kaydetme
         // statement'i reusable methods'da olusturuyoruz
         // burada sadece query'yi calistirip, resultset'i kaydedelim
