@@ -23,7 +23,11 @@ SELECT * FROM deposits WHERE amount >= 200 AND amount <= 499;
 
 SELECT name FROM cron_schedules;
 
-SELECT email FROM subscribers;]]></console>
+SELECT email FROM subscribers;
+
+UPDATE users SET lastname = 'yilmaz' WHERE username = 'mabally';
+
+SELECT lastname FROM users WHERE username = 'mabally';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -31,8 +35,8 @@ SELECT email FROM subscribers;]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="66c4b82a-258c-4972-94ce-d3069926f383" object-ref="schemas/u201212290_qaloantec/tables/subscribers" />
       <object connection-id="66c4b82a-258c-4972-94ce-d3069926f383" object-ref="consoles/Connection" />
+      <object connection-id="66c4b82a-258c-4972-94ce-d3069926f383" object-ref="schemas/u201212290_qaloantec/tables/users" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
@@ -41,6 +45,7 @@ SELECT email FROM subscribers;]]></console>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="66c4b82a-258c-4972-94ce-d3069926f383" dataset="u201212290_qaloantec.deposits" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="66c4b82a-258c-4972-94ce-d3069926f383" dataset="u201212290_qaloantec.subscribers" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="66c4b82a-258c-4972-94ce-d3069926f383" dataset="u201212290_qaloantec.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="66c4b82a-258c-4972-94ce-d3069926f383" dataset="u201212290_qaloantec.cron_schedules" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

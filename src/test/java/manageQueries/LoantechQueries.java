@@ -27,5 +27,16 @@ public class LoantechQueries {
         return "SELECT " + istenenSutun + " FROM subscribers;";
     }
 
+    // SELECT lastname FROM users WHERE username = 'mabally';
+    public static String usersTablosundaUsernamedenSoyisimSorgusu(String username){
+        return "SELECT lastname FROM users WHERE username = '"+username+"';" ;
+    }
+
+
+    // UPDATE users SET lastname = 'mabally' WHERE username = 'mabally';
+    public static String usersTablosundaSoyismiUpdateEtmeSorgusu(String username, String yeniSoyisim){
+        return "UPDATE users SET lastname = '" + yeniSoyisim + "' WHERE username = '" + username+"';";
+    }
+
 
 }

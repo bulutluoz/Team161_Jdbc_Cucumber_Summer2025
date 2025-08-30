@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 public class loantechStepdefinitions {
     ResultSet resultSet;
+    String eskiSoyisim;
 
     @Given("kullanici loantech database'ine baglanir")
     public void kullanici_loantech_database_ine_baglanir() {
@@ -101,6 +102,46 @@ public class loantechStepdefinitions {
 
     }
 
+    @When("users tablosunda username'i {string} olan kaydın soyadini büyük harfe çevirir")
+    public void users_tablosunda_username_i_olan_kaydın_soyadini_büyük_harfe_çevirir(String verilenUsername) throws SQLException {
+        // once eski soyismini almamiz gerekir
+        // SELECT lastname FROM users WHERE username = 'mabally';
+        String eskiSoyisimSorgusu = LoantechQueries.usersTablosundaUsernamedenSoyisimSorgusu(verilenUsername);
+        // bu sorguyu calistirip, eski soyismi resultset olarak bize donduren sorguyu calistiralim
+        resultSet = JDBCReusableMethods.executeMyQuery(eskiSoyisimSorgusu);
+        // resultSet'te varolan tek bir kayit var onu alip String olarak kaydedelim
+        resultSet.next();
+        eskiSoyisim = resultSet.getString("lastname");
+
+        // UPDATE users SET lastname = 'mabally' WHERE username = 'mabally';
+        String updateSorgusu = LoantechQueries.usersTablosundaSoyismiUpdateEtmeSorgusu(verilenUsername,eskiSoyisim.toUpperCase());
+
+        // update sorgusunu calistir
+        JDBCReusableMethods.executeMyUpdateQuery(updateSorgusu);
 
 
+    }
+
+
+    @Then("Update işlemi sonucunda username'i {string} olan kaydın soyisim değerinin büyük harfe dönüştüğünü test eder")
+    public void updateIşlemiSonucundaUsernameIOlanKaydınSoyisimDeğerininBüyükHarfeDönüştüğünüTestEder(String verilenUsername) throws SQLException {
+
+        String expectedYeniSoyisim = eskiSoyisim.toUpperCase();
+
+        // actual soyismi bulmak icin soyisim sorgusunu yeniden calistirmamiz gerekir
+
+        // username'den soyisim bulma sorgusu olustur
+        String soyisimSorgusu = LoantechQueries.usersTablosundaUsernamedenSoyisimSorgusu(verilenUsername);
+
+        // sorguyu calistir ve sonucu resultSet olarak kaydet
+        resultSet = JDBCReusableMethods.executeMyQuery(soyisimSorgusu);
+
+        // resultSet'te varolan tek bir kayit var onu alip String olarak kaydedelim
+        resultSet.next();
+        String actualYeniSoyisim = resultSet.getString("lastname");
+
+
+        Assert.assertEquals(actualYeniSoyisim,expectedYeniSoyisim);
+
+    }
 }
