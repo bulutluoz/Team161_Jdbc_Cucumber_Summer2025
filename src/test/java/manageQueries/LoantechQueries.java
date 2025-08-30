@@ -22,5 +22,10 @@ public class LoantechQueries {
         return "SELECT " + istenenSutun + " FROM cron_schedules;";
     }
 
+    public static String subscribersTablosuIstenenSutunSorgusu(String istenenSutun){
+        //    SELECT email FROM subscribers;
+        return "SELECT " + istenenSutun + " FROM subscribers;";
+    }
+
 
 }

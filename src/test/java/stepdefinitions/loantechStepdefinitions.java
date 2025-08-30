@@ -60,6 +60,7 @@ public class loantechStepdefinitions {
                         // SELECT name FROM cron_schedules;
         resultSet = JDBCReusableMethods.executeMyQuery(query);
     }
+
     @Then("ilk iki ismin {string} ve {string} olduğunu doğrular")
     public void ilk_iki_ismin_ve_olduğunu_doğrular(String expectedIlkIsim, String expectedIkinciIsim) throws SQLException {
 
@@ -73,4 +74,33 @@ public class loantechStepdefinitions {
         Assert.assertEquals(actualIkinciIsim,expectedIkinciIsim);
 
     }
+
+    @When("subscribers tablosundaki {string} bilgilerini sorgular")
+    public void subscribers_tablosundaki_bilgilerini_sorgular(String istenenSutun) {
+        // String query = "SELECT email FROM subscribers;"; // bu yazim dinamik degil
+        String query = LoantechQueries.subscribersTablosuIstenenSutunSorgusu(istenenSutun);
+
+        resultSet = JDBCReusableMethods.executeMyQuery(query);
+    }
+
+    @Then("{string} sutununda {string} kaydının bulunduğunu test eder")
+    public void sutununda_kaydının_bulunduğunu_test_eder(String sutunIsmi, String arananEmail) throws SQLException {
+
+        boolean arananEmailBulunduMu = false;
+
+        while (resultSet.next()){
+
+            if (resultSet.getString(sutunIsmi).equalsIgnoreCase(arananEmail) ){
+                arananEmailBulunduMu = true;
+                break;
+            }
+
+        }
+
+        Assert.assertTrue(arananEmailBulunduMu,"aranan kayit tabloda yok");
+
+    }
+
+
+
 }
