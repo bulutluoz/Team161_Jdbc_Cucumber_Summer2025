@@ -9,12 +9,18 @@ public class LoantechQueries {
     // eger dinamik bir sorgu olmasi istenirse String döndüren bir method olarak query olusturulur
 
 
-    public static String depositsTablosundan100Ve500arasindakiKayitlariGetirme = "SELECT * FROM deposits WHERE amount >= 100 AND amount <= 500;";
+    public static String depositsTablosundan100Ve500arasindakiKayitlariGetirme =
+            "SELECT * FROM deposits WHERE amount >= 100 AND amount <= 500;";
 
 
     public static String depositsTablosundaBelirliAraliktakiKayitlar(int minDeger , int maxDeger){
 
         return "SELECT * FROM deposits WHERE amount >= "+minDeger+" AND amount <= "+maxDeger+";";
     }
+
+    public static String cron_schedules_istenenSutunuSorgulama(String istenenSutun){
+        return "SELECT " + istenenSutun + " FROM cron_schedules;";
+    }
+
 
 }

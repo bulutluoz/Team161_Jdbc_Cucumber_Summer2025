@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import com.mysql.cj.protocol.x.ReusableOutputStream;
 import io.cucumber.java.en.*;
 import manageQueries.LoantechQueries;
 import org.testng.Assert;
@@ -46,8 +47,30 @@ public class loantechStepdefinitions {
         Assert.assertEquals(sayac,expectedSonucSayisi);
 
     }
+
     @Then("database baglantisini kapatir")
     public void database_baglantisini_kapatir() {
         JDBCReusableMethods.closeMyConnection();
+    }
+
+    @When("kullanici cron_schedules tablosundaki {string} bilgilerini sorgular")
+    public void kullanici_cron_schedules_tablosundaki_bilgilerini_sorgular(String sutunAdi) {
+
+        String query = LoantechQueries.cron_schedules_istenenSutunuSorgulama("name");
+                        // SELECT name FROM cron_schedules;
+        resultSet = JDBCReusableMethods.executeMyQuery(query);
+    }
+    @Then("ilk iki ismin {string} ve {string} olduğunu doğrular")
+    public void ilk_iki_ismin_ve_olduğunu_doğrular(String expectedIlkIsim, String expectedIkinciIsim) throws SQLException {
+
+        resultSet.next(); // ilk kaydin ustunden atlar ve ilk satiri resultSet objesine kaydeder
+        String actualIlkIsim = resultSet.getString("name");
+
+        resultSet.next(); // ikinci satiri atlar ve ikinci satirdaki tum bilgileri resultSet'e kaydeder
+        String actualIkinciIsim = resultSet.getString("name");
+
+        Assert.assertEquals(actualIlkIsim,expectedIlkIsim);
+        Assert.assertEquals(actualIkinciIsim,expectedIkinciIsim);
+
     }
 }
